@@ -1,0 +1,167 @@
+USE galeria;
+
+/* Se hicieron modificaciones a las columnas de las tablas para ajustarlo a los datos introducidos.
+Ese codigo no se agrega en esta sección pero se modificara para la entrega final*/
+
+INSERT INTO artista(id_artista,nombre,apellido,banco,cuenta_clabe,rfc)
+VALUES
+(1,'Ferdinand','Dumingo','tuttocitta',508755107059,'9eba8d'),
+(2,'Angie','Riccardo','zimbio',676777879954,'63739c'),
+(3,'Ginelle','Donisi','accuweather',352829812088,'44f4a0'),
+(4,'Sydel','Maling','state',510875674226,'8cc2a2'),
+(5,'Balduin','Lavelle','nationalgeograph',355864154528,'91d64c'),
+(6,'Zebedee','Haker','google',304499542225,'4e0597'),
+(7,'Burk','Tesmond','mozilla',677167366349,'8489c8'),
+(8,'Rebbecca','Bradburne','jugem',560224225563,'7635fb'),
+(9,'Nell','Metcalfe','reddit',225099135278,'24dbd7'),
+(10,'Percy','Graal','imdb',510014195754,'6cfaac');
+
+SELECT * 
+FROM artista;
+
+
+INSERT INTO cliente (id_cliente,nombre,apellido,celular,email,calle,numero,cruzamiento,ciudad,estado,cp)
+VALUES 
+(1,'Dianemarie','Weinberg',3422538425,'dweinberg0@craigslist.org','63 Union Trail',11,'80361 Coolidge Crossing','La Union','Kansas',508124),
+(2,'Nelly','Prendergast',6341346780,'nprendergast1@prnewswire.com','81290 Del Mar Street',28,'3665 Mcguire Court','Paris La Defense','Colorado',237884),
+(3,'Morissa','Mannock',1418067095,'mmannock2@elegantthemes.com','4986 Aberg Plaza',38,'33464 Mandrake Road','Altavista','Maryland',770548),
+(4,'Donall','Cator',1871861922,'dcator3@ycombinator.com','7635 Melby Park',552,'37 Kim Parkway','Garoua','Florida',52846),
+(5,'Ada','Toffetto',6658115675,'atoffetto4@prnewswire.com','39 Blue Bill Park Plaza',3822,'18 Bluestem Plaza','Balsamo Oriental','Minnesota',162368),
+(6,'Alia','Dancer',1725088102,'adancer5@cyberchimps.com','55121 Welch Drive',18815,'94612 Arkansas Plaza','Bamban','Minnesota',743344),
+(7,'Jared','Egglestone',6592585846,'jegglestone6@joomla.org','44 Hayes Lane',684,'58 Waubesa Pass','Sumber','Florida',945075),
+(8,'Biddie','Firidolfi',5767059999,'bfiridolfi7@clickbank.net','02908 Quincy Lane',0,'00160 Lake View Circle','Mutoko','North Dakota',286834),
+(9,'Gusty','Bonhomme',8895862305,'gbonhomme8@surveymonkey.com','3722 Helena Alley',42,'17 Ruskin Way','Amberk','Michigan',902856),
+(10,'Natal','Stelljes',7557790087,'nstelljes9@ucsd.edu','3232 Mcbride Avenue',38,'81 Prairieview Place','Bode','Kentucky',864780),
+(11,'Andie','Swinley',8422896923,'aswinleya@apple.com','43 5th Trail',8,'553 Corscot Alley','Carleton sur Mer','Arkansas',655370),
+(12,'Aldous','Yare',9967035979,'ayareb@wiley.com','5 Onsgard Center',9,'6 Wayridge Terrace','Najd al Jume','Massachusetts',168894),
+(13,'Charlene','Trasler',4023007448,'ctraslerc@netvibes.com','017 Sachs Drive',59558,'53 Moose Way','Katur','Oklahoma',174556),
+(14,'Sula','Ranken',9184109133,'srankend@wp.com','2224 Blaine Parkway',8,'889 Clyde Gallagher Hill','Merke','Idaho',687610),
+(15,'Che','Allcott',1257705274,'callcotte@census.gov','8429 Cody Point',2,'090 Northfield Court','Morfovoini','Massachusetts',761002),
+(16,'Gan','Galletly',1649528984,'ggalletlyf@sfgate.com','308 Evergreen Crossing',56,'5 Comanche Pass','Infonavit','San Luis Potosi',51775),
+(17,'Orelie','Drogan',5907579908,'odrogang@macromedia.com','407 Arizona Point',531,'4 Rieder Parkway','Kyra','Missouri',116744),
+(18,'Lisha','Chaimson',8846678871,'lchaimsonh@ibm.com','88 Arizona Street',48427,'5 Summit Junction','Lisboa','Lisboa',861133),
+(19,'Blondie','Yegorev',7407454501,'byegorevi@smh.com.au','1 Kensington Lane',707,'545 Bay Crossing','Kilifi','Georgia',58504),
+(20,'Sophey','Kynsey',1962755483,'skynseyj@list manage.com','76195 American Alley',2,'06300 Clove Park','Donggang','Kansas',89104),
+(21,'Adorne','Seyffert',8148939488,'aseyffertk@mail.ru','455 Burrows Terrace',2,'0 Moose Plaza','Erie','Pennsylvania',720387),
+(22,'Keelia','Goscomb',2756245970,'kgoscombl@unesco.org','2 Northridge Point',3,'08627 Michigan Place','Xianghuaqiao','Mississippi',326536),
+(23,'Ab','Strutt',8612122669,'astruttm@prlog.org','439 Carberry Trail',145,'026 Nova Avenue','Sajan','Arizona',342313),
+(24,'Mathilda','Audus',1721908173,'maudusn@privacy.gov.au','0955 Lakewood Gardens Terrace',823,'591 Surrey Hill','Bujumbura','Kentucky',946863),
+(25,'Colby','Bradburn',7939124122,'cbradburno@gravatar.com','533 Fair Oaks Terrace',7,'1179 Sherman Junction','Altenberg bei Linz','Viena',217626);
+
+SELECT * 
+FROM cliente;
+
+INSERT INTO galeria (rfc,sucursal,calle,numero,cruzamiento,ciudad,estado,cp,marca_comercial,nombre_titular,apellido_titular,banco,cuenta_clabe)
+VALUES
+('80778a5a','Poppy','450 Darwin Terrac',173,'3 Tony Circle ','Masewo','Idaho ',864780,'galeriaverde','Delly','Ruzicka','Alpha',358442509090),
+('45f765ae','Hillie ','79 Gerald Trail',26,'214 5th Center','Paty do Alfer','Idaho ',861133,'galeriaverde','Homer','Edgworth','Stringtoug',354614495907),
+('94cafadf','Godard ','00 Continental Tr',364,'19 Cardinal Pl','Zalanga','Idaho ',853456,'galeriaverde','Maurise','Gildroy','Cardify',117670440438);
+
+SELECT *
+FROM galeria;
+
+INSERT INTO inv_obra (id_obra,nombre,id_artista,rfc)
+VALUES
+(1,'FabianaimbricataRuiz&Pav.','4','80778a5a'),
+(2,'SolanumracemosumJacq.','2','45f765ae'),
+(3,'ArbutusunedoL.','5','94cafadf'),
+(4,'RobinianeomexicanaA.Gray','1','80778a5a'),
+(5,'Agalinistenuifolia','6','45f765ae'),
+(6,'EuphorbiahaeleeleanaD.R.Herbst','3','94cafadf'),
+(7,'CampylocentrumpygmaeumCogn.','5','80778a5a'),
+(8,'AspleniumcirrhatumRich.exWilld.','8','45f765ae'),
+(9,'GaliumalbumMill.','7','94cafadf'),
+(10,'Dodecatheonpulchellum','1','80778a5a'),
+(11,'MateleagonocarposShinners','2','45f765ae'),
+(12,'MerremiacissoidesHallierf.','7','94cafadf'),
+(13,'CyrtandrakohalaeRock','2','80778a5a'),
+(14,'CarexinterruptaBoeckeler','9','45f765ae'),
+(15,'OrphniosporamoriopsisD.Hawksw.','5','94cafadf'),
+(16,'LeprocaulonalbicansNyl.exHue','4','80778a5a'),
+(17,'CentauriummaryannumB.L.Turner','8','45f765ae'),
+(18,'PrunusmahalebL.','6','94cafadf'),
+(19,'EriodictyonaltissimumP.V.Wells','9','80778a5a'),
+(20,'PhilonotiscapillarisLindb.','5','45f765ae'),
+(21,'Helianthus—orgyaloidesCockerell','2','94cafadf'),
+(22,'TiquilialatiorA.T.Richardson','3','80778a5a'),
+(23,'AgrostemmagithagoL.','4','45f765ae'),
+(24,'PlacynthiumflabellosumZahlbr.','4','94cafadf'),
+(25,'EucalyptusbanksiiMaiden','4','80778a5a'),
+(26,'AmaranthusdubiusMart.exThell.','5','45f765ae'),
+(27,'GlauciumMill.','5','94cafadf'),
+(28,'CyperusonerosusM.C.Johnst.','2','80778a5a'),
+(29,'MirabilislaevisCurranvar.cedrosensiMunz','2','45f765ae'),
+(30,'ScutellariadrummondiiBenth.var.edwardsianaB.L.','10','94cafadf'),
+(31,'EurybiaglaucaG.L.Nesomvar.glauca','5','80778a5a'),
+(32,'PaspalumpaucispicatumVasey','8','45f765ae'),
+(33,'AllophyllumdivaricatumA.D.Grant&V.E.Grant','1','94cafadf'),
+(34,'CarexscopulorumT.Holmvar.scopulorum','4','80778a5a'),
+(35,'CrotontexensisMll.Arg.var.texensis','10','45f765ae'),
+(36,'AethusaL.','6','94cafadf'),
+(37,'Vernonia—illinoensisGleason','9','80778a5a'),
+(38,'HelianthemumnashiiBritton','6','45f765ae'),
+(39,'AstragalusensiformisM.E.Jonesvar.graciliorBarn','10','94cafadf'),
+(40,'PenstemonrattaniiA.Grayssp.rattanii','9','80778a5a');
+
+SELECT *
+FROM inv_obra;
+
+SET FOREIGN_KEY_CHECKS=0;
+ INSERT INTO compra (id_compra,id_artista,id_obra,precio,estado_pago,sucursal,fecha_compra)
+ VALUES 
+(1,1,4,25997,1,'Godard','2023-06-12'),
+(2,3,5,34678,0,'Poppy','2023-07-19'),
+(3,4,1,42977,0,'Hillie','2023-08-16'),
+(4,5,6,24115,0,'Godard','2023-06-22'),
+(5,7,5,40576,1,'Poppy','2023-07-08'),
+(6,8,8,45239,0,'Hillie','2023-07-14'),
+(7,10,1,51701,1,'Godard','2023-09-30'),
+(8,11,2,48531,1,'Poppy','2023-03-06'),
+(9,16,4,31701,1,'Hillie','2023-03-18'),
+(10,17,8,31054,0,'Godard','2023-03-20'),
+(11,20,5,49416,1,'Poppy','2023-10-09'),
+(12,24,4,18631,0,'Hillie','2023-04-26'),
+(13,26,5,60968,0,'Godard','2023-03-11'),
+(14,29,2,52856,0,'Poppy','2023-03-22'),
+(15,31,5,53816,0,'Hillie','2023-07-17'),
+(16,35,10,26819,1,'Godard','2023-02-11'),
+(17,37,9,17389,1,'Poppy','2023-02-15'),
+(18,38,6,49346,1,'Hillie','2023-08-06'),
+(19,39,10,25488,1,'Godard','2023-09-13'),
+(20,40,9,49486,1,'Poppy','2023-03-17');
+
+INSERT INTO venta (id_venta,id_obra,id_cliente,precio,estado_pago,estado_envio,sucursal,fecha_venta)
+VALUES
+(1,9,25,23915,0,1,'Poppy','2023-01-26'),
+(2,35,18,26819,1,2,'Hillie','2023-01-27'),
+(3,37,15,17389,1,2,'Godard','2023-01-31'),
+(4,28,23,62302,0,2,'Poppy','2023-02-02'),
+(5,11,24,48531,1,1,'Hillie','2023-02-19'),
+(6,6,6,51611,0,1,'Godard','2023-02-20'),
+(7,26,19,60968,1,2,'Poppy','2023-02-24'),
+(8,40,18,49486,1,1,'Hillie','2023-03-02'),
+(9,16,8,31701,1,0,'Godard','2023-03-03'),
+(10,17,21,31054,1,1,'Poppy','2023-03-05'),
+(11,23,12,10804,0,2,'Hillie','2023-03-06'),
+(12,29,21,52856,1,1,'Godard','2023-03-07'),
+(13,24,16,18631,1,1,'Poppy','2023-04-11'),
+(14,1,18,25997,1,1,'Hillie','2023-05-28'),
+(15,5,24,24115,1,0,'Godard','2023-06-07'),
+(16,7,11,40576,1,1,'Poppy','2023-06-23'),
+(17,8,8,45239,1,1,'Hillie','2023-06-29'),
+(18,31,21,53816,1,2,'Godard','2023-07-02'),
+(19,3,13,34678,1,2,'Poppy','2023-07-04'),
+(20,15,6,54856,0,2,'Hillie','2023-07-11'),
+(21,21,5,54295,0,1,'Godard','2023-07-13'),
+(22,38,19,49346,1,2,'Poppy','2023-07-22'),
+(23,4,23,42977,1,1,'Hillie','2023-08-01'),
+(24,2,14,45951,0,0,'Godard','2023-08-22'),
+(25,39,12,25488,1,0,'Poppy','2023-08-29'),
+(26,10,15,51701,1,2,'Hillie','2023-09-15'),
+(27,20,18,49416,1,0,'Godard','2023-09-24'),
+(28,12,7,63117,0,1,'Poppy','2023-11-17'),
+(29,27,10,34546,0,0,'Hillie','2023-11-28'),
+(30,25,17,56507,0,0,'Godard','2023-12-13');
+
+SELECT *
+FROM venta;
