@@ -70,6 +70,7 @@ CREATE TABLE venta (
     id_cliente INT,
     precio FLOAT NOT NULL,
     estado_pago TINYINT(1),
+    estado_envio TINYINT(1),
     sucursal VARCHAR(20),
     fecha_venta DATE,
     CONSTRAINT fk_venta_id_obra FOREIGN KEY (id_obra) REFERENCES inv_obra(id_obra),
