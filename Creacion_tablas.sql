@@ -1,7 +1,7 @@
 -- opcion CREATE DATABASE
-CREATE SCHEMA galeria2;
+CREATE SCHEMA galeria;
 
-USE galeria2;
+USE galeria;
 
 
 CREATE TABLE artista (
