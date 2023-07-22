@@ -1,7 +1,7 @@
 -- opcion CREATE DATABASE
-CREATE SCHEMA galeria;
+CREATE SCHEMA galeria2;
 
-USE galeria;
+USE galeria2;
 
 
 CREATE TABLE artista (
@@ -17,24 +17,24 @@ CREATE TABLE cliente (
 	id_cliente INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(50),
     apellido VARCHAR(50) NOT NULL,
-    celular INT,
+    celular BIGINT,
     email VARCHAR(50),
-    calle VARCHAR(20),
+    calle VARCHAR(100),
     numero VARCHAR(10),
-    cruzamiento VARCHAR(20),
-    ciudad VARCHAR(20),
-    estado VARCHAR(20),
+    cruzamiento VARCHAR(100),
+    ciudad VARCHAR(100),
+    estado VARCHAR(100),
     cp INT
 );
 
 CREATE TABLE galeria (
 	rfc VARCHAR(8) PRIMARY KEY NOT NULL,
     sucursal VARCHAR(20) NOT NULL,
-    calle VARCHAR(20),
+    calle VARCHAR(100),
     numero VARCHAR(10),
-    cruzamiento VARCHAR(20),
-    ciudad VARCHAR(20),
-    estado VARCHAR(20),
+    cruzamiento VARCHAR(100),
+    ciudad VARCHAR(100),
+    estado VARCHAR(100),
     cp INT,
     marca_comercial VARCHAR(20),
     nombre_titular VARCHAR(50),
@@ -48,8 +48,8 @@ CREATE TABLE inv_obra (
     nombre VARCHAR(50),
     id_artista INT,
     rfc VARCHAR(8),
-    FOREIGN KEY (id_artista) REFERENCES artista(id_artista),
-    FOREIGN KEY (rfc) REFERENCES galeria(rfc)
+    CONSTRAINT fk_inv_id_artista FOREIGN KEY (id_artista) REFERENCES artista(id_artista),
+    CONSTRAINT fk_inv_rfc FOREIGN KEY (rfc) REFERENCES galeria(rfc)
 );
 
 CREATE TABLE compra (
@@ -60,8 +60,8 @@ CREATE TABLE compra (
     estado_pago TINYINT(1),
     sucursal VARCHAR(20),
     fecha_compra DATE,
-	FOREIGN KEY (id_artista) REFERENCES artista(id_artista),
-    FOREIGN KEY (id_obra) REFERENCES inv_obra(id_obra)
+	CONSTRAINT fk_compra_id_artista FOREIGN KEY (id_artista) REFERENCES artista(id_artista),
+    CONSTRAINT fk_compra_id_obra FOREIGN KEY (id_obra) REFERENCES inv_obra(id_obra)
 );
 
 CREATE TABLE venta (
@@ -72,6 +72,6 @@ CREATE TABLE venta (
     estado_pago TINYINT(1),
     sucursal VARCHAR(20),
     fecha_venta DATE,
-    FOREIGN KEY (id_obra) REFERENCES inv_obra(id_obra),
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
+    CONSTRAINT fk_venta_id_obra FOREIGN KEY (id_obra) REFERENCES inv_obra(id_obra),
+    CONSTRAINT fk_venta_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
 );
