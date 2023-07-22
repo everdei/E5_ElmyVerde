@@ -1,0 +1,70 @@
+USE galeria;
+
+-- 1 Top artista más vendido en el año. Vista del artista más vendido en el año
+CREATE OR REPLACE VIEW top_ventas_artista AS
+SELECT a.id_artista AS id_artista, a.nombre AS nombre, a.apellido AS apellido, SUM(v.precio) as venta_total
+FROM venta v
+INNER JOIN inv_obra o
+ON v.id_obra=o.id_obra
+INNER JOIN artista a
+ON o.id_artista=a.id_artista
+GROUP BY id_artista
+ ORDER BY venta_total DESC
+LIMIT 1 ;
+
+SELECT *
+FROM top_ventas_artista ;
+
+-- 2 Top artista que genera más ganancia en el año. Vista del artista que genera más ganancia bruta
+CREATE OR REPLACE VIEW top_ganancia_artista AS
+SELECT a.id_artista AS id_artista, a.nombre AS nombre, a.apellido AS apellido, (SUM(v.precio)-SUM(c.precio)) AS ganancia_bruta
+FROM venta v
+INNER JOIN inv_obra o
+ON v.id_obra=o.id_obra
+INNER JOIN artista a
+ON o.id_artista=a.id_artista
+INNER JOIN compra c
+ON v.id_obra=c.id_obra
+GROUP BY id_artista
+ ORDER BY ganancia_bruta DESC
+LIMIT 1 ;
+
+SELECT *
+FROM top_ganancia_artista ;
+
+
+-- 3 Venta total mes – año. Ventas totales por mes,año
+CREATE OR REPLACE VIEW mes_venta_total AS
+SELECT MONTHNAME(fecha_venta) mes, SUM(precio) venta_total
+FROM venta
+GROUP BY mes;
+
+SELECT *
+FROM mes_venta_total;
+
+-- 4 Ventas sucursal-mes. Ventas por sucursal
+CREATE OR REPLACE VIEW sucursal_venta_total AS
+SELECT sucursal, MONTH(fecha_venta) AS mes, SUM(precio) AS venta_total
+FROM venta
+GROUP BY sucursal, mes
+ORDER BY mes,sucursal ASC;
+
+SELECT *
+FROM sucursal_venta_total;
+
+-- 5 Ganancia bruta por artista. Relación obras vendidas-artista y la ganancia bruta que generan las ventas totales
+CREATE OR REPLACE VIEW ganancia_artista_obra AS
+SELECT a.id_artista AS id_artista, a.nombre AS nombre, a.apellido AS apellido, 
+SUM(v.precio) precio_venta, SUM(c.precio) precio_compra, (SUM(v.precio)-SUM(c.precio)) AS ganancia_bruta
+FROM venta v
+INNER JOIN inv_obra o
+ON v.id_obra=o.id_obra
+INNER JOIN artista a
+ON o.id_artista=a.id_artista
+INNER JOIN compra c
+ON v.id_obra=c.id_obra
+GROUP BY id_artista
+ ORDER BY ganancia_bruta DESC;
+ 
+ SELECT *
+ FROM ganancia_artista_obra ; 
