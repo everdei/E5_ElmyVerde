@@ -1,0 +1,60 @@
+USE galeria;
+
+-- Store procedure: Total de ventas anuales por artista 
+DELIMITER //
+CREATE PROCEDURE ranking_ventas(IN p_campo VARCHAR(50), IN p_order VARCHAR(4))
+BEGIN    
+IF p_campo = 'id_artista' THEN
+	SET @p_campo= 'a.id_artista';
+ELSEIF p_campo = 'nombre' THEN
+	SET @p_campo = 'a.nombre';
+ELSEIF p_campo = 'apellido' THEN
+	SET @p_campo = 'a.apellido'; 
+ELSEIF p_campo = 'precio' THEN
+	SET @p_campo = 'SUM(v.precio)';
+END IF;
+    
+IF p_order = 'ASC' THEN
+	SET @p_order = 'ASC';
+ELSE
+    SET @p_order = 'DESC';
+END IF;
+SET @resultado= CONCAT('SELECT a.id_artista, a.nombre, a.apellido, SUM(v.precio) as venta_total 
+	FROM venta v
+	INNER JOIN inv_obra o
+	ON v.id_obra=o.id_obra
+	INNER JOIN artista a
+	ON o.id_artista=a.id_artista
+    GROUP BY 1
+    ORDER BY ',
+    @p_campo,' ',
+    @p_order);
+PREPARE lista_ranking FROM @resultado;
+EXECUTE lista_ranking;
+DEALLOCATE PREPARE lista_ranking;
+END
+//
+
+CALL ranking_ventas('nombre','DESC');
+
+-- Store procedure: Agregar los datos personales de un nuevo artista a la tabla artista
+DELIMITER //
+CREATE PROCEDURE nuevo_artista (IN p_nombre VARCHAR(50), IN p_apellido VARCHAR(50), IN p_banco VARCHAR(50),
+ IN p_cuenta_clabe VARCHAR(12),p_rfc VARCHAR(8))
+BEGIN
+	IF p_apellido = '' THEN
+    Select 'ERROR: El APELLIDO no puede ser vacio';
+    ELSEIF p_banco= '' THEN
+    Select 'ERROR: El BANCO no puede ser vacio';
+    ELSEIF p_cuenta_clabe= '' THEN
+    Select 'ERROR: La CUENTA CLABE no puede ser vacio';
+    ELSEIF p_rfc= '' THEN
+    Select 'ERROR: EL RFC no puede ser vacio';
+    ELSE
+    INSERT INTO artista(nombre,apellido,banco,cuenta_clabe,rfc) VALUES (p_nombre,p_apellido,p_banco,p_cuenta_clabe,p_rfc);
+    SELECT nombre,apellido,banco,cuenta_clabe,rfc FROM artista;
+END IF;
+END
+//
+
+CALL nuevo_artista ('barbie', 'rosa','mattel','526587456215','b4rb1300');
