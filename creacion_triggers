@@ -1,0 +1,86 @@
+/* TABLA 1: Tabla en la cual se ingresan los registros del trigger nueva_venta
+*/
+CREATE TABLE registro_venta (
+	user_id VARCHAR (200),
+    fecha_registro DATE,
+    hora_registro TIME,
+	id_venta INT,
+    id_obra INT,
+    id_cliente INT,
+    precio FLOAT NOT NULL,
+    sucursal VARCHAR(20)
+);
+
+/* TRIGGER BEFORE: Bitácora de quién registra las ventas realizadas
+*/
+CREATE TRIGGER nueva_venta
+BEFORE INSERT ON venta
+FOR EACH ROW
+INSERT INTO registro_venta (user_id,fecha_registro,hora_registro,id_venta,id_obra,id_cliente,precio,sucursal)
+VALUES
+(SESSION_USER(),
+CURDATE(),
+CURTIME(),
+NEW.id_venta,
+NEW.id_obra,
+NEW.id_cliente,
+NEW.precio,
+NEW.sucursal);
+
+-- Ejemplo de prueba para el trigger nueva_venta
+-- SET FOREIGN_KEY_CHECKS=0;
+INSERT INTO venta (id_venta,id_obra,id_cliente,precio,estado_pago,estado_envio,sucursal,fecha_venta)
+VALUES
+(31,36,25,78250,0,0,'Poppy','2023-01-27');
+
+SELECT *
+FROM registro_venta;
+
+
+/* TABLA 2: Tabla para la verificación de las nuevas compras, es decir,
+los pagos a programar para los artistas */
+CREATE TABLE verificacion_compra (
+	user_id VARCHAR (200),
+    fecha_registro DATE,
+    hora_registro TIME,
+    id_venta INT,
+    id_obra INT,
+    precio FLOAT,
+    estado_pago TINYINT(1),
+    sucursal VARCHAR(20),
+    fecha_venta DATE);
+
+
+/* TRIGGER AFTER: Agregar a la tabla compra la lista de obras 
+que ya han sido pagadas por el cliente para programar el pago al artista proveedor
+Cambio de estado de 0 a 1 (No pagado a Pagado)
+*/
+DROP TRIGGER cambio_estado_pago;
+CREATE TRIGGER cambio_estado_pago
+AFTER UPDATE ON venta
+FOR EACH ROW
+INSERT  INTO verificacion_compra (user_id,fecha_registro,hora_registro,
+id_venta,id_obra,precio,estado_pago,sucursal,fecha_venta)
+VALUES
+	(SESSION_USER(),
+	CURDATE(),
+	CURTIME(),
+	NEW.id_venta,
+    NEW.id_obra,
+    NEW.precio,
+    NEW.estado_pago,
+    NEW.sucursal,
+    NEW.fecha_venta);
+    
+UPDATE venta 
+SET estado_pago=1
+WHERE
+id_venta=31;
+
+SELECT *
+FROM verificacion_compra;
+
+
+SELECT *
+FROM venta
+WHERE id_venta=31;
