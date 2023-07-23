@@ -1,0 +1,42 @@
+
+USE galeria;
+    
+/* 1. Nombre completa artista obra vendida. Obtener el nombre y apellido del artista de la obra vendida*/
+DELIMITER //
+CREATE FUNCTION obra_vendida_artista(p_id_obra INT)
+RETURNS VARCHAR(200)
+READS SQL DATA
+BEGIN
+	DECLARE lista_artista VARCHAR(200);
+    SET lista_artista = (SELECT CONCAT(a.nombre,' ',a.apellido) as apellido_artista
+    FROM artista a
+    RIGHT JOIN inv_obra o
+    ON a.id_artista = o.id_artista
+    RIGHT JOIN  venta v
+    ON o.id_obra= v.id_obra
+    WHERE p_id_obra=v.id_obra
+    );
+    RETURN lista_artista;
+END
+//
+
+SELECT obra_vendida_artista(1);
+
+/* 2.  Ganancia por obra. Obtener la ganancia bruta para la galeria de la obra vendida*/
+DELIMITER //
+CREATE FUNCTION ganaciab_obra(p_id_obra INT)
+RETURNS FLOAT
+READS SQL DATA
+BEGIN
+	DECLARE ganancia FLOAT;
+    SET ganancia = (SELECT (v.precio-c.precio)
+    FROM venta v
+    INNER JOIN compra c
+    ON v.id_obra = c.id_obra
+    WHERE p_id_obra=v.id_obra
+    );
+    RETURN ganancia;
+END
+//
+
+SELECT ganaciab_obra(1);
